@@ -1,0 +1,17 @@
+{
+  "name": "service",
+  "version": "0.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/gridaco/html-to-image.git",
+  "author": "Girda Inc",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "@types/node": "^18.15.13",
+    "typescript": "^5.0.4"
+  },
+  "dependencies": {
+    "html-to-image": "^1.11.11",
+    "puppeteer": "^19.10.1"
+  }
+}
