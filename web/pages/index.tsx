@@ -19,8 +19,15 @@ export default function Home() {
       <main className={styles.main}>
         <div className={styles.description}>
           <p>
-            <code className={styles.code}>HTML2.IO</code> Automate your artworks
-            workflow with modern web techs
+            <Image
+              src="/logo.svg"
+              alt="Logo"
+              className={styles.logo}
+              width={40}
+              height={32}
+              priority
+            />
+            Automate your artworks workflow with modern web techs
           </p>
           <div>
             <a
@@ -33,7 +40,7 @@ export default function Home() {
                 src="/grida.svg"
                 alt="Grida Logo"
                 className={styles.gridaLogo}
-                width={100}
+                width={76}
                 height={24}
                 priority
               />
