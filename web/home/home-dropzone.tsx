@@ -3,46 +3,31 @@ import styled from "@emotion/styled";
 import { useDropzone } from "react-dropzone";
 
 export function HomeDropzone() {
-  const onDrop = useCallback((acceptedFiles: File[]) => {
-    console.log(acceptedFiles);
-    // Do something with the files
-  }, []);
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({
-    onDrop,
-    onDragEnter: () => {},
-    onDragOver: () => {},
-    onDragLeave: () => {},
-    multiple: true,
-    accept: {
-      "text/html": [".html", ".htm"],
-    },
-  });
+  const onDrop = (acceptedFiles) => {
+    acceptedFiles.forEach((file) => {
+      console.log("File dropped:", file.path);
+      // Process the file here
+    });
+  };
+
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
   return (
-    <Dropzone {...getRootProps()}>
-      <input
-        style={{
-          width: "100%",
-          height: "100%",
-        }}
-        {...getInputProps()}
-      />
+    <div
+      {...getRootProps()}
+      style={{
+        border: "1px solid #ccc",
+        padding: "20px",
+        width: "300px",
+        textAlign: "center",
+      }}
+    >
+      <input {...getInputProps()} />
       {isDragActive ? (
         <p>Drop the files here ...</p>
       ) : (
         <p>Drag 'n' drop some files here, or click to select files</p>
       )}
-    </Dropzone>
+    </div>
   );
 }
-
-const Dropzone = styled.div`
-  width: 100%;
-  height: 100%;
-  border: 2px dashed #ccc;
-  border-radius: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-`;
