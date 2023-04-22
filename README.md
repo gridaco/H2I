@@ -1,7 +1,7 @@
 <p align="center">
   <img src="./artworks/cover.png" alt="html2.io github cover graphic" height="240" />
-  <a href="https://html2.io"><h1>html2.io</h1></a>
-  <p>Html to image as a service</p>
+  <a href="https://html2.io"><h1 style="text-align:center;">html2.io</h1></a>
+  <p style="text-align:center;">Html to image as a service</p>
 </p>
 
 ## Features
