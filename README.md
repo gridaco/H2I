@@ -1,6 +1,8 @@
-# [`html2.io`](https://html2.io)
-
-Html to image as a service
+<p style="text-align:center;">
+  <img src="./artworks/cover.png" alt="html2.io github cover graphic" style="width:auto;height:240px;" />
+  <a href="https://html2.io"><h1 style="text-align:center;">html2.io</h1></a>
+  <p style="text-align:center;">Html to image as a service</p>
+</p>
 
 ## Features
 
