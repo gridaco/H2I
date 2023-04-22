@@ -1,3 +1,13 @@
 {
-  "extends": "../../tsconfig.json"
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "."
+  },
+  "exclude": [
+    "node_modules",
+    "__tests__",
+    "jest.config.js",
+    "tsup.config.ts",
+    "tsconfig.json"
+  ]
 }
