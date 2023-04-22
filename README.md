@@ -1,4 +1,4 @@
-# `html2.io`
+# [`html2.io`](https://html2.io)
 
 Html to image as a service
 
@@ -10,6 +10,7 @@ Html to image as a service
 - Native fonts & emoji support (Apple emoji OK)
 - Template engine
 - Write Template with React
+- CDN Ready
 
 ## Usage
 
