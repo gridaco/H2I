@@ -7,7 +7,6 @@
     "module": "esnext",
     "baseUrl": ".",
     "moduleResolution": "node",
-    "isolatedModules": true,
-    "incremental": true
+    "isolatedModules": true
   }
 }
