@@ -12,6 +12,7 @@
   "dependencies": {
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
+    "@monaco-editor/react": "^4.5.0",
     "@next/font": "13.3.1",
     "@types/node": "18.15.13",
     "@types/react": "18.0.38",
