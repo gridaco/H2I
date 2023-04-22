@@ -1,8 +1,9 @@
 import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "@next/font/google";
-import styles from "../styles/Home.module.css";
+import styles from "styles/Home.module.css";
 import Link from "next/link";
+import { HomeDropzone } from "home";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -40,7 +41,15 @@ export default function Home() {
           </div>
         </div>
 
-        <div className={styles.center}>Drop your html file here</div>
+        <div
+          className={styles.center}
+          style={{
+            width: 200,
+            height: 200,
+          }}
+        >
+          <HomeDropzone />
+        </div>
 
         <div className={styles.grid}>
           <Link
