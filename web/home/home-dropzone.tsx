@@ -9,6 +9,9 @@ export function HomeDropzone() {
   }, []);
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
+    onDragEnter: () => {},
+    onDragLeave: () => {},
+    multiple: true,
     accept: {
       "text/html": [".html", ".htm"],
     },
