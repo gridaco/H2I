@@ -10,6 +10,7 @@ export function HomeDropzone() {
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
     onDragEnter: () => {},
+    onDragOver: () => {},
     onDragLeave: () => {},
     multiple: true,
     accept: {
