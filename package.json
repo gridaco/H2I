@@ -1,0 +1,13 @@
+{
+  "name": "html2",
+  "version": "0.0.0",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "web",
+    "services/*"
+  ],
+  "scripts": {
+    "web": "yarn workspace web dev"
+  }
+}
