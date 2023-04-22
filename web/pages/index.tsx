@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>HTML2.IO - html to image, pdf and more</title>
+        <title>H2I - html to image, pdf and more</title>
         <meta name="description" content="Become a html artist" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />

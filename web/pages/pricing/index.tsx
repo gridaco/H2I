@@ -1,11 +1,11 @@
 import Head from "next/head";
 import React from "react";
 
-export default function Playground() {
+export default function Pricing() {
   return (
     <>
       <Head>
-        <title>Playground - H2I</title>
+        <title>Pricing - H2I</title>
       </Head>
     </>
   );
