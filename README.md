@@ -60,7 +60,6 @@ Special thanks to:
 
 - Puppeteer
 - Chromium
-- html-to-image
 
 ## License
 

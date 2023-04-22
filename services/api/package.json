@@ -2,7 +2,7 @@
   "name": "service",
   "version": "0.0.0",
   "main": "index.js",
-  "repository": "https://github.com/gridaco/html-to-image.git",
+  "repository": "https://github.com/gridaco/html2.git",
   "author": "Girda Inc",
   "license": "MIT",
   "private": true,
