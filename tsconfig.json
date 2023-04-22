@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "lib": ["esnext"],
+    "strict": false,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "baseUrl": ".",
+    "moduleResolution": "node",
+    "isolatedModules": true,
+    "incremental": true
+  }
+}
