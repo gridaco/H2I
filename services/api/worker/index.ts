@@ -15,6 +15,7 @@ export async function h2i(html: string) {
   const id = nanoid();
 
   const { name: out } = tmp.fileSync({ name: id, postfix: ".png" });
+
   await renderToPng({ html, outputPath: out });
 
   const file = fs.readFileSync(out);

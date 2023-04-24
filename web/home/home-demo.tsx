@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { HomeDemoDropzone } from "./home-dropzone";
 import * as H2I from "h2i";
 
@@ -7,15 +7,23 @@ const img = H2I.Client({
 });
 
 export function HomeDemo() {
-  const onHtml = (html) => {
-    img.fromHtml(html).then((img) => {
-      console.log(img);
+  const [html, setHtml] = React.useState<string | null>(null);
+  const [src, setSrc] = React.useState<string | null>(null);
+
+  useEffect(() => {
+    if (!html) {
+      return;
+    }
+
+    img.fromHtml(html).then(({ data }) => {
+      setSrc(data.url);
     });
-  };
+  }, [html]);
 
   return (
     <>
-      <HomeDemoDropzone onHtml={onHtml} />
+      <HomeDemoDropzone onHtml={setHtml} />
+      {src && <img src={src} width="100%" height="100%" />}
     </>
   );
 }

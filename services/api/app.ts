@@ -25,10 +25,13 @@ app.use(logErrors);
 
 app.post("/image", async (req, res) => {
   const { html } = req.body;
+  try {
+    const { url } = await h2i(html);
 
-  const { url } = await h2i(html);
-
-  res.json({ url });
+    res.json({ url });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
 });
 
 export { app };

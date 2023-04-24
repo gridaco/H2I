@@ -17,7 +17,10 @@ export interface ClientInterface {
    * @param {html} String html as string
    * @see https://html2.io/docs
    */
-  readonly fromHtml: (html: string, params?: {}) => AxiosPromise<{}>;
+  readonly fromHtml: (
+    html: string,
+    params?: {},
+  ) => AxiosPromise<{ url: string }>;
 }
 
 export const Client = (opts: ClientOptions): ClientInterface => {
