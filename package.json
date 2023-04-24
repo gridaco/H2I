@@ -8,6 +8,11 @@
     "services/*"
   ],
   "scripts": {
-    "web": "yarn workspace web dev"
+    "build": "turbo run build",
+    "dev": "turbo run dev --parallel",
+    "web": "yarn workspace web dev",
+    "deploy:staging": "turbo run deploy:staging --parallel",
+    "deploy:production": "turbo run deploy:production --parallel",
+    "package": "turbo run package"
   }
 }
