@@ -1,5 +1,7 @@
 <p align="center">
-  <img src="./artworks/cover.png" alt="html2.io github cover graphic" height="240" />
+  <a href="https://html2.io">
+    <img src="./artworks/cover.png" alt="html2.io github cover graphic" height="240" />
+  </a>
   <h1 align="center"><a href="https://html2.io">html2.io</a></h1>
   <p align="center">Html to image as a service</p>
 </p>
@@ -18,42 +20,44 @@
 
 **Install**
 
-- [NPM - `@html2/io`](https://www.npmjs.com/package/@html2/io)
-- [PyPi - `html2`](https://pypi.org/project/html2/)
+- [NPM - `h2i`](https://www.npmjs.com/package/h2i)
+- [PyPi - `h2i`](https://pypi.org/project/h2i/)
 
 ```
-yarn add @html2/io
+yarn add h2i
 ```
 
 **Simple usage**
 
 ```ts
-import IO from "@html2/io";
+import { Html2ImageApi } from "h2i";
 
-const io = new IO();
+const img = new Html2ImageApi();
 
-io.fromFile("test.html").then((image) => {
+img.fromFile("test.html").then((image) => {
   image.save("test.png");
 });
 
-io.fromUrl("https://google.com").then((image) => {
+img.fromUrl("https://google.com").then((image) => {
   image.save("google.png");
 });
 
-io.fromHtml("<h1>Hello world</h1>").then((image) => {
+img.fromHtml("<h1>Hello world</h1>").then((image) => {
   image.save("hello.png");
 });
 
-io.fromMd("# Hello world").then((image) => {
+img.fromMd("# Hello world").then((image) => {
   image.save("hello.png");
 });
 
-io.fromRepo("https://github.com/gridaco/html2.io", {
-  branch: "master",
-  path: "README.md",
-}).then((image) => {
-  image.save("readme.png");
-});
+img
+  .fromRepo("https://github.com/gridaco/html2.io", {
+    branch: "master",
+    path: "README.md",
+  })
+  .then((image) => {
+    image.save("readme.png");
+  });
 ```
 
 ## Aknowledgements
