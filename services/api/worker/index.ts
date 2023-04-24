@@ -33,5 +33,5 @@ export async function h2i(html: string) {
 
   await s3.send(command);
 
-  return { url: `https://html2io.s3.amazonaws.com/${id}.png` };
+  return { url: `https://${k.BUCKET}.s3.amazonaws.com/${id}.png` };
 }
