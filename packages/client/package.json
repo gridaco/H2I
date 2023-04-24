@@ -1,6 +1,23 @@
 {
-  "name": "@html2/client",
+  "name": "h2i",
   "version": "0.0.0",
+  "repository": "https://github.com/gridaco/html2",
+  "homepage": "https://html2.io",
+  "license": "MIT",
+  "keywords": [
+    "html2",
+    "html2pdf",
+    "html2image",
+    "html2jpg",
+    "html2png",
+    "html2jpeg",
+    "html2webp",
+    "html2svg"
+  ],
+  "author": {
+    "name": "Girda Inc",
+    "email": "hello@grida.co"
+  },
   "scripts": {
     "build": "tsup"
   },
@@ -15,5 +32,13 @@
   },
   "peerDependencies": {
     "axios": "^1.3.6"
+  },
+  "files": [
+    "README.md",
+    "LICENSE",
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
   }
 }

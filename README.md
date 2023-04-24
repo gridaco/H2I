@@ -11,17 +11,18 @@
 - HTML/CSS to image
 - HTML/CSS to pdf
 - Markdown to image
-- Native fonts & emoji support (Apple emoji OK)
+- Built-in fonts & emoji support (Apple emoji OK)
 - Template engine
 - Write Template with React
 - CDN Ready
+- [View All Features](https://html2.io/docs/features)
 
 ## Usage
 
 **Install**
 
-- [NPM - `h2i`](https://www.npmjs.com/package/h2i)
-- [PyPi - `h2i`](https://pypi.org/project/h2i/)
+- [Node - `h2i`](https://www.npmjs.com/package/h2i)
+- [Python - `h2i`](https://pypi.org/project/h2i/)
 
 ```
 yarn add h2i
@@ -30,9 +31,11 @@ yarn add h2i
 **Simple usage**
 
 ```ts
-import { Html2ImageApi } from "h2i";
+import * as H2I from "h2i";
 
-const img = new Html2ImageApi();
+const img = H2I.Client({
+  apiKey: "<your-api-key>",
+});
 
 img.fromFile("test.html").then((image) => {
   image.save("test.png");
