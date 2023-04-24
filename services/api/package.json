@@ -6,7 +6,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "dev": "sls offline start --stage development",
+    "dev": "sls offline start --stage development --noTimeout",
     "deploy:staging": "sls deploy --stage staging",
     "deploy:prod": "sls deploy --stage production",
     "deploy:dev": "sls deploy --stage development",

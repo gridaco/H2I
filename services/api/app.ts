@@ -24,11 +24,11 @@ app.use(bodyParser.json());
 app.use(logErrors);
 
 app.post("/image", async (req, res) => {
-  const { html } = req.body;
+  const { html, url } = req.body;
   try {
-    const { url } = await h2i(html);
+    const { url: file } = await h2i({ html, url });
 
-    res.json({ url });
+    res.json({ url: file });
   } catch (e) {
     res.status(500).json({ error: e.message });
   }

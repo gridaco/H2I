@@ -11,12 +11,12 @@ import fs from "fs";
 
 const s3 = new S3Client({});
 
-export async function h2i(html: string) {
+export async function h2i(p: { html?: string; url: string }) {
   const id = nanoid();
 
   const { name: out } = tmp.fileSync({ name: id, postfix: ".png" });
 
-  await renderToPng({ html, outputPath: out });
+  await renderToPng({ ...p, outputPath: out });
 
   const file = fs.readFileSync(out);
 
