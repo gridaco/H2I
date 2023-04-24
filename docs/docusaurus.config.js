@@ -47,6 +47,9 @@ const config = {
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
         },
+        gtag: {
+          trackingID: "G-RD01DS69BF",
+        },
       }),
     ],
   ],
@@ -55,9 +58,9 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       // Replace with your project's social card
-      image: "img/docusaurus-social-card.jpg",
+      image: "img/social-card.jpg",
       navbar: {
-        title: "My Site",
+        title: "Docs",
         logo: {
           alt: "html2.io logo",
           src: "img/logo.svg",
@@ -70,7 +73,7 @@ const config = {
             label: "Tutorial",
           },
           {
-            href: "https://github.com/facebook/docusaurus",
+            href: "https://github.com/gridaco/H2I",
             label: "GitHub",
             position: "right",
           },
@@ -80,11 +83,11 @@ const config = {
         style: "dark",
         links: [
           {
-            title: "Docs",
+            title: "Company",
             items: [
               {
-                label: "Tutorial",
-                to: "/docs/intro",
+                label: "Grida.co",
+                to: "https://grida.co",
               },
             ],
           },
@@ -92,25 +95,20 @@ const config = {
             title: "Community",
             items: [
               {
-                label: "Slack",
-                href: "https://grida.co/join-slack",
+                label: "GitHub",
+                href: "https://github.com/gridaco/grida",
               },
               {
                 label: "Twitter",
-                href: "https://twitter.com/docusaurus",
+                href: "https://twitter.com/grida_co",
               },
-            ],
-          },
-          {
-            title: "More",
-            items: [
               {
                 label: "Blog",
-                to: "https://blog.grida.co",
+                href: "https://blog.grida.co",
               },
               {
-                label: "GitHub",
-                href: "https://github.com/gridaco/html2.io",
+                label: "Slack",
+                href: "https://grida.co/join-slack",
               },
             ],
           },
