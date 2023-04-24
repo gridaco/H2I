@@ -1,0 +1,23 @@
+{
+  "name": "h2i",
+  "version": "0.0.0",
+  "repository": "https://github.com/gridaco/html2",
+  "website": "https://html2.io",
+  "keywords": [
+    "html2",
+    "html2pdf",
+    "html2image",
+    "html2jpg",
+    "html2png",
+    "html2jpeg",
+    "html2webp",
+    "html2svg"
+  ],
+  "author": {
+    "name": "Girda Inc",
+    "email": "hello@grida.co"
+  },
+  "files": [
+    "README.md"
+  ]
+}
