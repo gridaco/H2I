@@ -26,7 +26,7 @@ export const Client = (opts: ClientOptions): ClientInterface => {
   };
 
   const client = axios.create({
-    baseURL: `https://${opts.apiRoot || k.API_ROOT}/v1/`,
+    baseURL: `${opts.apiRoot || k.API_ROOT}/`,
     headers,
   });
 

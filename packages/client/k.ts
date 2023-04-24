@@ -1,1 +1,1 @@
-export const API_ROOT = "api.html2.io";
+export const API_ROOT = "https://api.html2.io";
