@@ -1,4 +1,4 @@
-service: api.html2.io
+service: h2i-api
 useDotenv: true
 plugins:
   - serverless-webpack
@@ -30,6 +30,7 @@ provider:
   region: us-west-1
   environment:
     STAGE: ${opt:stage, self:provider.stage}
+    BUCKET: h2i-cdn
   apiGateway:
     # https://stackoverflow.com/questions/61003311/serverless-i-image-upload-to-s3-broken-after-deploy-local-worked-only/61003498#61003498
     binaryMediaTypes:
@@ -40,13 +41,7 @@ provider:
         - s3:PutObject
         - s3:GetObject
         - s3:PutObjectAcl
-      Resource: "arn:aws:s3:::html2io/*"
-
-resource:
-  s3bucket:
-    Type: S3::Bucket
-    Properties:
-      BucketName: html2io
+      Resource: "arn:aws:s3:::${self:provider.environment.BUCKET}/*"
 
 functions:
   main:

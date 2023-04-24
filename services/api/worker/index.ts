@@ -5,10 +5,10 @@ import {
   PutObjectCommand,
   PutObjectCommandInput,
 } from "@aws-sdk/client-s3";
+import * as k from "../k";
 import tmp from "tmp";
 import fs from "fs";
 
-const BUCKET = "html2io";
 const s3 = new S3Client({});
 
 export async function h2i(html: string) {
@@ -21,7 +21,7 @@ export async function h2i(html: string) {
   const file = fs.readFileSync(out);
 
   const params: PutObjectCommandInput = {
-    Bucket: BUCKET,
+    Bucket: k.BUCKET,
     Key: `${id}.png`,
     Body: file,
     ContentEncoding: "base64",
