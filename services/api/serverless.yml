@@ -1,0 +1,54 @@
+service: api.html2.io
+useDotenv: true
+plugins:
+  - serverless-webpack
+  - serverless-offline
+
+custom:
+  customDomain:
+    domainName: api.html2.io
+    certificateName: "api.html2.io"
+    basePath: ""
+    createRoute53Record: false
+    stage: production
+    # enabled only for production - configured by package.json script with --domain flag.
+    enabled: ${param:domain, false}
+  sesTemplates:
+    addStage: true
+  serverless-offline:
+    httpPort: 4026
+    lambdaPort: 3026
+    noPrependStageInUrl: true
+  webpack:
+    includeModules:
+      forceExclude:
+        - aws-sdk
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  region: us-west-1
+  environment:
+    STAGE: ${opt:stage, self:provider.stage}
+  apiGateway:
+    # https://stackoverflow.com/questions/61003311/serverless-i-image-upload-to-s3-broken-after-deploy-local-worked-only/61003498#61003498
+    binaryMediaTypes:
+      - "*/*"
+
+functions:
+  main:
+    handler: index.handler
+    events:
+      - http:
+          method: any
+          path: /{proxy+}
+          cors:
+            origin: "*"
+      - http:
+          method: get
+          path: /
+          cors:
+            origin: "*"
+
+package:
+  individually: true
