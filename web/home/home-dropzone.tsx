@@ -5,7 +5,11 @@ import { Inter } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export function HomeDemoDropzone() {
+export function HomeDemoDropzone({
+  onHtml,
+}: {
+  onHtml: (html: string) => void;
+}) {
   const onDrop = (acceptedFiles) => {
     acceptedFiles.forEach((file) => {
       // read file
@@ -15,7 +19,7 @@ export function HomeDemoDropzone() {
       reader.onerror = () => console.log("file reading has failed");
       reader.onload = () => {
         const txt = reader.result;
-        // call the api with the file content
+        onHtml(txt as string);
       };
 
       reader.readAsText(file);
