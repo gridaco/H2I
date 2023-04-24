@@ -14,10 +14,10 @@ export interface ClientOptions {
 export interface ClientInterface {
   readonly client: AxiosInstance;
   /**
-   * @param {fileId} String File to export JSON from
-   * @see https://www.figma.com/developers/api#get-files-endpoint
+   * @param {html} String html as string
+   * @see https://html2.io/docs
    */
-  readonly fromFile: (fileId: string, params?: {}) => AxiosPromise<{}>;
+  readonly fromHtml: (html: string, params?: {}) => AxiosPromise<{}>;
 }
 
 export const Client = (opts: ClientOptions): ClientInterface => {
@@ -33,11 +33,17 @@ export const Client = (opts: ClientOptions): ClientInterface => {
   return {
     client,
 
-    fromFile: (fileId, params = {}) =>
-      client.get(`files/${fileId}`, {
-        params: {
-          ...params,
+    fromHtml: (html, params = {}) =>
+      client.post(
+        `/image`,
+        {
+          html,
         },
-      }),
+        {
+          params: {
+            ...params,
+          },
+        },
+      ),
   };
 };
