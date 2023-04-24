@@ -1,5 +1,6 @@
 import express from "express";
 import bodyParser from "body-parser";
+import { h2i } from "./worker";
 
 function logErrors(err, req, res, next) {
   console.error(err.stack);
@@ -22,8 +23,12 @@ app.use(bodyParser.json());
 
 app.use(logErrors);
 
-app.post("/convert", (req, res) => {
-  //
+app.post("/image", async (req, res) => {
+  const { html } = req.body;
+
+  const { url } = await h2i(html);
+
+  res.json({ url });
 });
 
 export { app };

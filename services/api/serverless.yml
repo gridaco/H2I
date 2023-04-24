@@ -34,6 +34,19 @@ provider:
     # https://stackoverflow.com/questions/61003311/serverless-i-image-upload-to-s3-broken-after-deploy-local-worked-only/61003498#61003498
     binaryMediaTypes:
       - "*/*"
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - s3:PutObject
+        - s3:GetObject
+        - s3:PutObjectAcl
+      Resource: "arn:aws:s3:::html2io/*"
+
+resource:
+  s3bucket:
+    Type: S3::Bucket
+    Properties:
+      BucketName: html2io
 
 functions:
   main:
