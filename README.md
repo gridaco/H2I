@@ -63,6 +63,10 @@ img
   });
 ```
 
+## Fonts
+
+Google fonts are supported by default. You can also use custom fonts by uploading them to the [dashboard](https://html2.io/dashboard).
+
 ## Aknowledgements
 
 Special thanks to:

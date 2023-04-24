@@ -4,6 +4,7 @@
   "repository": "https://github.com/gridaco/html2",
   "homepage": "https://html2.io",
   "license": "MIT",
+  "private": false,
   "keywords": [
     "html2",
     "html2pdf",

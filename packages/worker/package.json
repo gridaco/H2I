@@ -1,7 +1,9 @@
 {
-  "name": "@html2/worker",
+  "name": "@h2i/worker",
   "version": "0.0.0",
   "license": "MIT",
+  "repository": "https://github.com/gridaco/html2",
+  "homepage": "https://html2.io",
   "private": false,
   "keywords": [
     "html2",
