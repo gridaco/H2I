@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "allowJs": true,
+    "removeComments": true,
+    "resolveJsonModule": true,
+    "outDir": "dist",
+    "lib": ["esnext"],
+    "baseUrl": "src",
+    "esModuleInterop": true
+  }
+}
