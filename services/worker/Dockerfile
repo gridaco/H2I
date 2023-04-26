@@ -4,19 +4,12 @@ FROM browserless/chrome:latest
 # Create app directory
 WORKDIR /app
 
-# Install app dependencies
+# Copy only production dependencies
 COPY package.json .
-RUN npm install
+RUN npm install --omit=dev
 
-# Bundle app source
-COPY tsconfig.json /app/tsconfig.json
-COPY /src /app/src
-
-# Build the TypeScript source
-RUN npm run build
-
-# Expose worker port
-EXPOSE 3000
+# Copy built files
+COPY dist/ /app/dist
 
 # Start worker script
 CMD ["npm", "start"]

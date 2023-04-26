@@ -14,8 +14,17 @@ if ! command -v docker &> /dev/null; then
   exit 1
 fi
 
+# Build the package
+npm install
+npm run build
+
 # Retrieve ECR repository URL
-REPOSITORY_URL=$(terraform output -json | jq -r '.worker_repository_url.value')
+REPOSITORY_URL=$(terraform output -state=../terraform/terraform.tfstate worker_repository_url)
+
+# Remove '"' characters from the URL
+REPOSITORY_URL=$(echo "${REPOSITORY_URL}" | tr -d '"')
+
+echo $REPOSITORY_URL
 
 # Build the Docker image
 docker build -t "${REPOSITORY_URL}" .
