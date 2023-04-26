@@ -1,5 +1,5 @@
 resource "aws_sns_topic" "response_topic" {
-  name = "H2I-service-response-${var.stage}"
+  name = "h2i-service-response-${var.stage}"
   tags = local.common_tags
 }
 

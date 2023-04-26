@@ -1,5 +1,5 @@
 resource "aws_cloudwatch_metric_alarm" "queue_depth_alarm" {
-  alarm_name          = "H2I-service-queue-depth-alarm-${var.stage}"
+  alarm_name          = "h2i-service-queue-depth-alarm-${var.stage}"
   comparison_operator = "GreaterThanOrEqualToThreshold"
   evaluation_periods  = "1"
   metric_name         = "ApproximateNumberOfMessagesVisible"
@@ -10,7 +10,7 @@ resource "aws_cloudwatch_metric_alarm" "queue_depth_alarm" {
   alarm_description   = "This metric checks for the depth of the SQS queue"
   alarm_actions       = [aws_appautoscaling_policy.worker_scale_up_policy.arn]
   dimensions = {
-    QueueName = "H2I-service-request-${var.stage}"
+    QueueName = "h2i-service-request-${var.stage}"
   }
 }
 
@@ -23,7 +23,7 @@ resource "aws_appautoscaling_target" "worker_target" {
 }
 
 resource "aws_appautoscaling_policy" "worker_scale_up_policy" {
-  name               = "H2I-service-worker-scale-up-policy-${var.stage}"
+  name               = "h2i-service-worker-scale-up-policy-${var.stage}"
   policy_type        = "StepScaling"
   resource_id        = aws_appautoscaling_target.worker_target.resource_id
   scalable_dimension = aws_appautoscaling_target.worker_target.scalable_dimension

@@ -1,6 +1,6 @@
 
 resource "aws_iam_role" "worker_exec" {
-  name = "H2I-service-worker-exec-${var.stage}"
+  name = "h2i-service-worker-exec-${var.stage}"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
@@ -19,7 +19,7 @@ resource "aws_iam_role" "worker_exec" {
 }
 
 resource "aws_iam_role" "worker_task" {
-  name = "H2I-service-worker-task-${var.stage}"
+  name = "h2i-service-worker-task-${var.stage}"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
@@ -38,7 +38,7 @@ resource "aws_iam_role" "worker_task" {
 }
 
 resource "aws_iam_role_policy" "worker_exec_policy" {
-  name = "H2I-service-worker-exec-policy-${var.stage}"
+  name = "h2i-service-worker-exec-policy-${var.stage}"
   role = aws_iam_role.worker_exec.id
 
   policy = jsonencode({
@@ -57,7 +57,7 @@ resource "aws_iam_role_policy" "worker_exec_policy" {
 }
 
 resource "aws_iam_role_policy" "worker_task_policy" {
-  name = "H2I-service-worker-task-policy-${var.stage}"
+  name = "h2i-service-worker-task-policy-${var.stage}"
   role = aws_iam_role.worker_task.id
 
   policy = jsonencode({
@@ -70,14 +70,14 @@ resource "aws_iam_role_policy" "worker_task_policy" {
           "sqs:GetQueueAttributes"
         ]
         Effect   = "Allow"
-        Resource = "arn:aws:sqs:${var.region}:${data.aws_caller_identity.current.account_id}:H2I-service-request-${var.stage}"
+        Resource = "arn:aws:sqs:${var.region}:${data.aws_caller_identity.current.account_id}:h2i-service-request-${var.stage}"
       },
       {
         Action = [
           "sns:Publish"
         ]
         Effect   = "Allow"
-        Resource = "arn:aws:sns:${var.region}:${data.aws_caller_identity.current.account_id}:H2I-service-response-${var.stage}"
+        Resource = "arn:aws:sns:${var.region}:${data.aws_caller_identity.current.account_id}:h2i-service-response-${var.stage}"
       }
     ]
   })

@@ -1,5 +1,5 @@
 resource "aws_sqs_queue" "request_queue" {
-  name                      = "H2I-service-request-${var.stage}"
+  name                      = "h2i-service-request-${var.stage}"
   delay_seconds             = 0
   message_retention_seconds = 345600
   receive_wait_time_seconds = 20

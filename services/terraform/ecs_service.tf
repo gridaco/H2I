@@ -1,5 +1,5 @@
 resource "aws_ecs_task_definition" "worker_task" {
-  family                   = "H2I-service-worker-${var.stage}"
+  family                   = "h2i-service-worker-${var.stage}"
   requires_compatibilities = ["FARGATE"]
   network_mode             = "awsvpc"
   cpu                      = "256"
@@ -40,7 +40,7 @@ resource "aws_ecs_task_definition" "worker_task" {
 }
 
 resource "aws_ecs_service" "worker_service" {
-  name            = "H2I-service-worker-${var.stage}-service"
+  name            = "h2i-service-worker-${var.stage}-service"
   cluster         = aws_ecs_cluster.worker_cluster.id
   task_definition = aws_ecs_task_definition.worker_task.arn
   desired_count   = 1

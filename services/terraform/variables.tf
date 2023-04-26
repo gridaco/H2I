@@ -12,7 +12,7 @@ variable "stage" {
 
 locals {
   common_tags = {
-    Service = "H2I-service"
+    Service = "h2i-service"
     Stage   = var.stage
   }
 }
