@@ -1,0 +1,19 @@
+{
+  "name": "@services/worker",
+  "version": "0.0.0",
+  "main": "dist/index.js",
+  "private": true,
+  "scripts": {
+    "start": "node dist/index.js",
+    "build": "esbuild src/index.ts --bundle --platform=node --target=node14 --outfile=dist/index.js",
+    "dev": "nodemon --watch src --exec \"npm run build && node dist/index.js\""
+  },
+  "dependencies": {
+    "@h2i/worker": "*",
+    "aws-sdk": "^2.1365.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.17.18",
+    "nodemon": "^2.0.22"
+  }
+}
