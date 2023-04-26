@@ -71,8 +71,8 @@ Google fonts are supported by default. You can also use custom fonts by uploadin
 
 Special thanks to:
 
-- Puppeteer
-- Chromium
+- [puppeteer](https://github.com/puppeteer/puppeteer)
+- [browserless/chrome](https://github.com/browserless/chrome)
 
 ## License
 

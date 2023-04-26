@@ -15,8 +15,8 @@ if ! command -v docker &> /dev/null; then
 fi
 
 # Build the package
-npm install
-npm run build
+yarn install
+yarn run build
 
 # Retrieve ECR repository URL
 REPOSITORY_URL=$(terraform output -state=../terraform/terraform.tfstate worker_repository_url)
