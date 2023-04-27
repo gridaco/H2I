@@ -10,6 +10,11 @@ variable "stage" {
   default = "dev"
 }
 
+variable "instance_type" {
+  description = "EC2 instance type"
+  default     = "t2.micro"
+}
+
 locals {
   common_tags = {
     Service = "h2i-service"

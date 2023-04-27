@@ -40,3 +40,22 @@ resource "aws_appautoscaling_policy" "worker_scale_up_policy" {
     }
   }
 }
+
+resource "aws_appautoscaling_policy" "worker_scale_down_policy" {
+  name               = "h2i-service-worker-scale-down-policy-${var.stage}"
+  policy_type        = "StepScaling"
+  resource_id        = aws_appautoscaling_target.worker_target.resource_id
+  scalable_dimension = aws_appautoscaling_target.worker_target.scalable_dimension
+  service_namespace  = aws_appautoscaling_target.worker_target.service_namespace
+
+  step_scaling_policy_configuration {
+    adjustment_type         = "ChangeInCapacity"
+    cooldown                = 300
+    metric_aggregation_type = "Average"
+
+    step_adjustment {
+      scaling_adjustment          = -1
+      metric_interval_upper_bound = 0
+    }
+  }
+}
