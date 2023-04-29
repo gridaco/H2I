@@ -38,7 +38,8 @@ resource "aws_security_group" "ecs_instance_sg" {
 
 resource "aws_launch_template" "ecs_instance" {
   name_prefix   = "h2i-service-worker-ecs-instance"
-  image_id      = local.ecs_optimized_ami_id
+  # image_id      = local.ecs_optimized_ami_id
+  image_id = "ami-094d4d00fd7462815"
   instance_type = var.instance_type
 
   key_name = aws_key_pair.ecs_instance_key.key_name
@@ -68,7 +69,7 @@ resource "aws_launch_template" "ecs_instance" {
 
 resource "aws_autoscaling_group" "ecs_instance_group" {
   name_prefix          = "h2i-service-worker-ecs-instance-group"
-  
+
   min_size = 1
   max_size = 3
   desired_capacity = 1
