@@ -11,5 +11,8 @@ RUN npm install --omit=dev
 # Copy built files
 COPY dist/ /app/dist
 
+# Expose worker port
+EXPOSE 3000
+
 # Start worker script
 CMD ["npm", "start"]
