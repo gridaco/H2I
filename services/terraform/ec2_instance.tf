@@ -38,8 +38,7 @@ resource "aws_security_group" "ecs_instance_sg" {
 
 resource "aws_launch_template" "ecs_instance" {
   name_prefix   = "h2i-service-worker-ecs-instance"
-  # image_id      = local.ecs_optimized_ami_id
-  image_id = "ami-094d4d00fd7462815"
+  image_id      = local.ecs_optimized_ami_id
   instance_type = var.instance_type
 
   key_name = aws_key_pair.ecs_instance_key.key_name

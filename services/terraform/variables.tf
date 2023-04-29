@@ -7,7 +7,7 @@ variable "aws_profile" {
 }
 
 variable "stage" {
-  default = "staging"
+  default = "dev"
 }
 
 variable "instance_type" {
