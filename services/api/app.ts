@@ -32,7 +32,11 @@ app.post("/image", async (req, res) => {
 
     const { title, img, userAgent, version } = await image(url);
 
-    const imgurl = await upload(`${id}.png`, img);
+    const imgurl = await upload(
+      `${id}.png`,
+      // create a buffer from the base64 string
+      Buffer.from(img.replace(/^data:image\/png;base64,/, ""), "base64"),
+    );
 
     res.json({
       id: id,
