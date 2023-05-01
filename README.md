@@ -77,6 +77,7 @@ Special thanks to:
 ## Usefull links
 
 - [chromeless (Archived)](https://github.com/prisma-archive/chromeless)
+- [CDP](https://github.com/cyrus-and/chrome-remote-interface)
 
 ## License
 
