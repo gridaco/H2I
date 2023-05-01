@@ -26,8 +26,9 @@ custom:
 
 provider:
   name: aws
-  runtime: nodejs14.x
+  runtime: nodejs18.x
   region: us-west-1
+  timeout: 300
   environment:
     STAGE: ${opt:stage, self:provider.stage}
     BUCKET: h2i-cdn
@@ -46,6 +47,8 @@ provider:
 functions:
   main:
     handler: index.handler
+    memorySize: 1536
+    timeout: 30
     events:
       - http:
           method: any
@@ -57,6 +60,13 @@ functions:
           path: /
           cors:
             origin: "*"
+    layers:
+      - !Ref ChromiumLambdaLayer
+
+layers:
+  chromium:
+    package:
+      artifact: ./bin/chromium.zip
 
 package:
   individually: true
