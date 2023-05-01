@@ -74,6 +74,10 @@ Special thanks to:
 - [puppeteer](https://github.com/puppeteer/puppeteer)
 - [browserless/chrome](https://github.com/browserless/chrome)
 
+## Usefull links
+
+- [chromeless (Archived)](https://github.com/prisma-archive/chromeless)
+
 ## License
 
 The source code and artworks are [Apache 2.0 licensed](./LICENSE), yet it is not allowed to deploy the whole service to make a replica service for money without huge modification.
