@@ -48,13 +48,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div
-          className={styles.center}
-          style={{
-            width: 400,
-            height: 200,
-          }}
-        >
+        <div className={styles.center}>
           <HomeDemo />
         </div>
 
