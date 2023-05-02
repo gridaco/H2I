@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useRef } from "react";
 import { HomeDemoDropzone } from "./home-dropzone";
 import * as H2I from "h2i";
 import styled from "@emotion/styled";
@@ -80,13 +80,29 @@ export function HomeDemo() {
         throw new Error("Not implemented");
       }
     }
-  }, [code, mode]);
+  }, [mode, code]);
+
+  const onCTARef = useRef(onCTA); // Add this line
+
+  useEffect(() => {
+    onCTARef.current = onCTA; // Update onCTARef on every render
+  }, [onCTA]);
 
   useEffect(() => {
     if (!code) {
       return;
     }
   }, [code, mode]);
+
+  const handleEditorDidMount = (editor, monaco) => {
+    editor.onKeyDown((e) => {
+      if (e.metaKey && e.keyCode === monaco.KeyCode.Enter) {
+        // when Meta+Enter (CMD+Enter) is pressed
+        onCTARef.current(); // Use the current ref instead
+        e.stopPropagation();
+      }
+    });
+  };
 
   if (mode === "csb") {
     return (
@@ -110,7 +126,9 @@ export function HomeDemo() {
             theme="vs-dark"
             loading={<></>}
             value={code}
+            onChange={setCode}
             language={language}
+            onMount={handleEditorDidMount}
             options={{
               // minimal
               minimap: { enabled: false },
