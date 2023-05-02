@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useRef } from "react";
 import * as H2I from "h2i";
 import styled from "@emotion/styled";
 import { Editor } from "@monaco-editor/react";
-import { PlayIcon, UploadIcon } from "@radix-ui/react-icons";
+import { PlayIcon, UploadIcon, Cross2Icon } from "@radix-ui/react-icons";
 import { demo_src } from "./k";
 import { motion } from "framer-motion";
 import { FuseBorder } from "components/fx";
@@ -70,6 +70,10 @@ export function HomeDemo() {
       setCode(event.target.result as string);
     };
     reader.readAsText(file);
+  };
+
+  const onCancel = () => {
+    setIdle(false);
   };
 
   const onCTA = useCallback(() => {
@@ -145,8 +149,12 @@ export function HomeDemo() {
             <code>{language}</code>
           </footer>
         </section>
-        <button onClick={onCTA} className="cta">
-          <PlayIcon />
+        <button
+          onClick={idle ? onCancel : onCTA}
+          className="cta"
+          data-inverted={idle}
+        >
+          {idle ? <Cross2Icon /> : <PlayIcon />}
         </button>
         <section className="panel scroll" style={{ background: "#aeaeae" }}>
           <motion.div
@@ -265,6 +273,16 @@ const HomeDemoContainer = styled.div`
   flex-direction: row;
 
   .cta {
+    --shadow-color-1: rgba(255, 255, 255, 0.1);
+    --shadow-color-2: rgba(255, 255, 255, 0.2);
+
+    &[data-inverted="true"] {
+      background: white;
+      color: black;
+      --shadow-color-1: rgba(0, 0, 0, 0.2);
+      --shadow-color-2: rgba(0, 0, 0, 0.4);
+    }
+
     z-index: 9;
     cursor: pointer;
     position: absolute;
@@ -276,7 +294,7 @@ const HomeDemoContainer = styled.div`
     border-radius: 50%;
 
     background: black;
-    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 0 2px var(--shadow-color-1);
 
     width: 40px;
     height: 40px;
@@ -287,7 +305,7 @@ const HomeDemoContainer = styled.div`
     transform: translate(-50%, -50%);
 
     &:hover {
-      box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.2);
+      box-shadow: 0 0 0 4px var(--shadow-color-2);
     }
 
     transition: all 0.1s ease-in-out;
