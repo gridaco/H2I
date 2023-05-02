@@ -12,15 +12,15 @@ export const demo_src = {
           sans-serif;
       }
 
-      #RootWrapperLetter1 {
+      #root {
         min-height: 100vh;
         background-color: black;
         position: relative;
       }
 
-      #BgAsArtwork {
-        width: 612px;
-        height: 792px;
+      #background {
+        width: 100vw;
+        height: 100vh;
         overflow: hidden;
         position: absolute;
         left: 0px;
@@ -65,22 +65,23 @@ export const demo_src = {
         filter: blur(524.24px);
       }
 
-      #Helloworld {
+      #heading {
         color: white;
         text-overflow: ellipsis;
-        font-size: 100px;
+        font-size: 80px;
         font-family: Inter, sans-serif;
         font-weight: 900;
         text-align: left;
         position: absolute;
-        left: calc((calc((50% + -0px)) - 266px));
-        top: calc((calc((50% + -0px)) - 60px));
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
       }
     </style>
   </head>
   <body>
-    <div id="RootWrapperLetter1">
-      <div id="BgAsArtwork">
+    <div id="root">
+      <div id="background">
         <svg xmlns="http://www.w3.org/2000/svg" id="Vector5">
           <defs>
             <linearGradient id="linear-gradient">
@@ -118,7 +119,7 @@ export const demo_src = {
           ></path>
         </svg>
       </div>
-      <span id="Helloworld"> helloworld </span>
+      <span id="heading"> Ultimate artwork automation solution with HTML </span>
     </div>
   </body>
 </html>
