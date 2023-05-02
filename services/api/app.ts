@@ -1,5 +1,6 @@
 import express from "express";
 import bodyParser from "body-parser";
+import cors from "cors";
 import { ChromeImageExport, image } from "./chrome";
 import { upload } from "./s3";
 import { nanoid } from "nanoid";
@@ -12,15 +13,17 @@ function logErrors(err, req, res, next) {
 
 const app = express();
 
-app.get("/", (req, res) => {
-  res.redirect("https://html2.io");
-});
+app.use(cors());
 
 app.use(
   bodyParser.urlencoded({
     extended: true,
   }),
 );
+
+app.get("/", (req, res) => {
+  res.redirect("https://html2.io");
+});
 
 app.use(bodyParser.json());
 
