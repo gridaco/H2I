@@ -1,11 +1,11 @@
 import React, { useCallback, useEffect, useRef } from "react";
-import { HomeDemoDropzone } from "./home-dropzone";
 import * as H2I from "h2i";
 import styled from "@emotion/styled";
 import { Editor } from "@monaco-editor/react";
 import { PlayIcon, UploadIcon } from "@radix-ui/react-icons";
 import { demo_src } from "./k";
 import { motion } from "framer-motion";
+import { FuseBorder } from "components/fx";
 
 const img = H2I.Client({
   apiRoot: "https://api.html2.io/",
@@ -38,7 +38,7 @@ const mode_acceptable_files = {
 } as const;
 
 export function HomeDemo() {
-  const [idle, setIdle] = React.useState(true);
+  const [idle, setIdle] = React.useState(false);
   const [mode, setMode] = React.useState<DemoMode>(demo_src.language);
   const [code, setCode] = React.useState<string | null>(demo_src.value);
   const [src, setSrc] = React.useState<string | null>();
@@ -50,9 +50,13 @@ export function HomeDemo() {
   useEffect(() => {
     // first load
     setTimeout(() => {
+      setIdle(true);
+    }, 500);
+
+    setTimeout(() => {
       setIdle(false);
       setSrc(demo_src.img);
-    }, 500);
+    }, 1000);
   }, []);
 
   const triggerFileSelect = (event) => {
@@ -71,9 +75,15 @@ export function HomeDemo() {
   const onCTA = useCallback(() => {
     switch (mode) {
       case "html": {
-        img.fromHtml(code).then(({ data }) => {
-          setSrc(data.url);
-        });
+        setIdle(true);
+        img
+          .fromHtml(code)
+          .then(({ data }) => {
+            setSrc(data.url);
+          })
+          .finally(() => {
+            setIdle(false);
+          });
         break;
       }
       default: {
@@ -103,58 +113,60 @@ export function HomeDemo() {
   }
 
   return (
-    <HomeDemoContainer>
-      <section className="panel" style={{ background: "#1E1E1E" }}>
-        <header></header>
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-          style={{ height: "100%" }}
-        >
-          <DemoEditor
-            value={code}
-            onChange={setCode}
-            language={language}
-            onCTA={() => onCTARef.current()}
-          />
-        </motion.div>
-        <footer className="fixed">
-          <button onClick={triggerFileSelect}>
-            <UploadIcon />
-            <input
-              ref={fileInputRef}
-              onChange={onFileChange}
-              type="file"
-              accept={mode_acceptable_files[mode].join(",")}
-              style={{ display: "none" }}
+    <FuseBorder enabled={idle} borderWidth={2}>
+      <HomeDemoContainer>
+        <section className="panel" style={{ background: "#1E1E1E" }}>
+          <header></header>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            style={{ height: "100%" }}
+          >
+            <DemoEditor
+              value={code}
+              onChange={setCode}
+              language={language}
+              onCTA={() => onCTARef.current()}
             />
-          </button>
-          <div style={{ flex: 1 }} />
-          <code>{language}</code>
-        </footer>
-      </section>
-      <button onClick={onCTA} className="cta">
-        <PlayIcon />
-      </button>
-      <section className="panel scroll">
-        <motion.div
-          animate={{ opacity: 0 }}
-          transition={{ duration: 0.5 }}
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            background: "rgba(0,0,0,0.5)",
-            backdropFilter: "blur(4px)",
-          }}
-        />
-        {src && <SmoothImage src={src} alt="H2I result" width="100%" />}
-      </section>
-      {/* <HomeDemoDropzone onHtml={setHtml} /> */}
-    </HomeDemoContainer>
+          </motion.div>
+          <footer className="fixed">
+            <button onClick={triggerFileSelect}>
+              <UploadIcon />
+              <input
+                ref={fileInputRef}
+                onChange={onFileChange}
+                type="file"
+                accept={mode_acceptable_files[mode].join(",")}
+                style={{ display: "none" }}
+              />
+            </button>
+            <div style={{ flex: 1 }} />
+            <code>{language}</code>
+          </footer>
+        </section>
+        <button onClick={onCTA} className="cta">
+          <PlayIcon />
+        </button>
+        <section className="panel scroll">
+          <motion.div
+            animate={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              background: "rgba(0,0,0,0.5)",
+              backdropFilter: "blur(4px)",
+            }}
+          />
+          {src && <SmoothImage src={src} alt="H2I result" width="100%" />}
+        </section>
+        {/* <HomeDemoDropzone onHtml={setHtml} /> */}
+      </HomeDemoContainer>
+    </FuseBorder>
   );
 }
 
