@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import Head from "next/head";
+import Link from "next/link";
 import React from "react";
 
 export default function Templates() {
@@ -22,9 +23,9 @@ export default function Templates() {
           </div>
         </section>
         <section className="grid">
-          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(() => (
+          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((p, i) => (
             <>
-              <TemplateCard />
+              <TemplateCard key={i} id={p.toString()} />
             </>
           ))}
         </section>
@@ -84,18 +85,25 @@ const TagWrapper = styled.button`
   padding: 4px 8px;
 `;
 
-function TemplateCard() {
+function TemplateCard({ id }: { id: string }) {
   return (
-    <TemplateCardWrapper>
-      <img
-        src="https://i.pinimg.com/736x/56/d7/5f/56d75f99f82620f64895c8f81592fd89.jpg"
-        alt="Template Image"
-      />
-      <div>Template Image</div>
-      <div>Template Name</div>
-      <div>Template Description</div>
-      <div>Template Tags</div>
-    </TemplateCardWrapper>
+    <Link
+      href={{
+        pathname: "/templates/[id]",
+        query: { id },
+      }}
+    >
+      <TemplateCardWrapper>
+        <img
+          src="https://i.pinimg.com/736x/56/d7/5f/56d75f99f82620f64895c8f81592fd89.jpg"
+          alt="Template Image"
+        />
+        <div>Template Image</div>
+        <div>Template Name</div>
+        <div>Template Description</div>
+        <div>Template Tags</div>
+      </TemplateCardWrapper>
+    </Link>
   );
 }
 
@@ -115,3 +123,9 @@ const TemplateCardWrapper = styled.div`
     object-fit: cover;
   }
 `;
+
+export function getStaticProps() {
+  return {
+    props: {},
+  };
+}
