@@ -94,16 +94,6 @@ export function HomeDemo() {
     }
   }, [code, mode]);
 
-  const handleEditorDidMount = (editor, monaco) => {
-    editor.onKeyDown((e) => {
-      if (e.metaKey && e.keyCode === monaco.KeyCode.Enter) {
-        // when Meta+Enter (CMD+Enter) is pressed
-        onCTARef.current(); // Use the current ref instead
-        e.stopPropagation();
-      }
-    });
-  };
-
   if (mode === "csb") {
     return (
       <HomeDemoContainer>
@@ -122,30 +112,11 @@ export function HomeDemo() {
           transition={{ duration: 0.5 }}
           style={{ height: "100%" }}
         >
-          <Editor
-            theme="vs-dark"
-            loading={<></>}
+          <DemoEditor
             value={code}
             onChange={setCode}
             language={language}
-            onMount={handleEditorDidMount}
-            options={{
-              // minimal
-              minimap: { enabled: false },
-              // lineNumbers: "off",
-              scrollBeyondLastLine: false,
-              scrollbar: { vertical: "hidden" },
-              overviewRulerBorder: false,
-              overviewRulerLanes: 0,
-              renderLineHighlight: "none",
-              renderIndentGuides: false,
-              renderLineHighlightOnlyWhenFocus: true,
-              hideCursorInOverviewRuler: true,
-              renderValidationDecorations: "on",
-              renderWhitespace: "none",
-              renderControlCharacters: false,
-              renderFinalNewline: false,
-            }}
+            onCTA={() => onCTARef.current()}
           />
         </motion.div>
         <footer className="fixed">
@@ -184,6 +155,56 @@ export function HomeDemo() {
       </section>
       {/* <HomeDemoDropzone onHtml={setHtml} /> */}
     </HomeDemoContainer>
+  );
+}
+
+function DemoEditor({
+  value,
+  onChange,
+  language,
+  onCTA,
+}: {
+  value: string;
+  onChange: (value: string) => void;
+  language: "html" | "js" | "txt";
+  onCTA: () => void;
+}) {
+  const handleEditorDidMount = (editor, monaco) => {
+    editor.onKeyDown((e) => {
+      if (e.metaKey && e.keyCode === monaco.KeyCode.Enter) {
+        // when Meta+Enter (CMD+Enter) is pressed
+        onCTA();
+        e.stopPropagation();
+      }
+    });
+  };
+
+  return (
+    <Editor
+      theme="vs-dark"
+      loading={<></>}
+      value={value}
+      onChange={onChange}
+      language={language}
+      onMount={handleEditorDidMount}
+      options={{
+        // minimal
+        minimap: { enabled: false },
+        // lineNumbers: "off",
+        scrollBeyondLastLine: false,
+        scrollbar: { vertical: "hidden" },
+        overviewRulerBorder: false,
+        overviewRulerLanes: 0,
+        renderLineHighlight: "none",
+        renderIndentGuides: false,
+        renderLineHighlightOnlyWhenFocus: true,
+        hideCursorInOverviewRuler: true,
+        renderValidationDecorations: "on",
+        renderWhitespace: "none",
+        renderControlCharacters: false,
+        renderFinalNewline: false,
+      }}
+    />
   );
 }
 
