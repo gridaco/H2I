@@ -60,7 +60,7 @@ export function FuseBorder({
   children,
   borderWidth = 4, // Default value
   borderRadius = 8,
-  color = "white",
+  color = "blue",
   enabled = true,
 }: RotatingBorderCardProps) {
   return (

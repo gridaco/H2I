@@ -6,6 +6,7 @@ import { PlayIcon, UploadIcon, Cross2Icon } from "@radix-ui/react-icons";
 import { demo_src } from "./k";
 import { motion } from "framer-motion";
 import { FuseBorder } from "components/fx";
+import { usePrefersDarkMode } from "hooks/use-prefers-dark-mode";
 
 const img = H2I.Client({
   apiRoot: "https://api.html2.io/",
@@ -38,6 +39,7 @@ const mode_acceptable_files = {
 } as const;
 
 export function HomeDemo() {
+  const prefersDarkMode = usePrefersDarkMode();
   const [idle, setIdle] = React.useState(false);
   const [mode, setMode] = React.useState<DemoMode>(demo_src.language);
   const [code, setCode] = React.useState<string | null>(demo_src.value);
@@ -117,7 +119,11 @@ export function HomeDemo() {
   }
 
   return (
-    <FuseBorder enabled={idle} borderWidth={2}>
+    <FuseBorder
+      enabled={idle}
+      borderWidth={2}
+      color={prefersDarkMode ? "white" : "black"}
+    >
       <HomeDemoContainer>
         <section className="panel" style={{ background: "#1E1E1E" }}>
           <header></header>
@@ -253,7 +259,6 @@ function SmoothImage({
       animate={{ opacity: loaded ? 1 : 0 }}
       transition={{ duration }}
       onLoad={() => {
-        console.log("loaded");
         setLoaded(true);
       }}
     />
