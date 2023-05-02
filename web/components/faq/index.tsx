@@ -4,13 +4,15 @@ import styled from "@emotion/styled";
 export function FaqItem() {
   return (
     <FaqItemWrapper>
-      <summary className="question">
-        What is the difference between a user and a member?
-      </summary>
-      <details className="answer">
-        A user is a person who can log in to your workspace. A member is a
-        person who can access a specific project. A user can be a member, but a
-        member doesn’t have to be a user.
+      <details>
+        <summary className="question">
+          What is the difference between a user and a member?
+        </summary>
+        <p className="answer">
+          A user is a person who can log in to your workspace. A member is a
+          person who can access a specific project. A user can be a member, but
+          a member doesn’t have to be a user.
+        </p>
       </details>
     </FaqItemWrapper>
   );
@@ -30,6 +32,7 @@ const FaqItemWrapper = styled.div`
   }
 
   .answer {
+    margin-top: 16px;
     font-size: 13px;
     font-weight: 500;
     text-align: left;
