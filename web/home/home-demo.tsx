@@ -148,7 +148,7 @@ export function HomeDemo() {
         <button onClick={onCTA} className="cta">
           <PlayIcon />
         </button>
-        <section className="panel scroll">
+        <section className="panel scroll" style={{ background: "#aeaeae" }}>
           <motion.div
             animate={{ opacity: 0 }}
             transition={{ duration: 0.5 }}
