@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
+import { motion } from "framer-motion";
 
 export function PricingCard({
   plan,
@@ -24,7 +25,7 @@ export function PricingCard({
   style?: React.CSSProperties;
 }) {
   return (
-    <PricingCardWrapper style={style}>
+    <PricingCardWrapper style={style} whileHover={{ scale: 1.02 }}>
       <span className="plan">{plan}</span>
       <section>
         <span className="price">
@@ -50,7 +51,7 @@ export function PricingCard({
   );
 }
 
-const PricingCardWrapper = styled.div`
+const PricingCardWrapper = styled(motion.div)`
   display: flex;
   flex-direction: column;
   padding: 20px;
@@ -61,6 +62,11 @@ const PricingCardWrapper = styled.div`
   color: white;
   font-family: Inter, sans-serif;
   text-align: left;
+
+  &:hover {
+    border: solid 2px rgba(255, 255, 255, 0.8);
+    box-shadow: 0px 0px 24px 2px rgba(255, 255, 255, 0.1);
+  }
 
   section {
     margin-top: 32px;

@@ -4,6 +4,7 @@ import { Header, HeaderSpace } from "components/header";
 import Head from "next/head";
 import { FaqItem } from "components/faq";
 import { PricingCard } from "components/pricing";
+import { motion } from "framer-motion";
 
 const price_size = {
   normal: { width: 220 } as const,
@@ -19,8 +20,18 @@ export default function Pricing() {
       <Header />
       <Main>
         <HeaderSpace />
-        <h1>Pricing</h1>
-        <section className="pricing-table section">
+        <motion.h1
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+        >
+          Pricing
+        </motion.h1>
+        <motion.section
+          className="pricing-table section"
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
           <PricingCard
             style={price_size.normal}
             plan="Sandbox"
@@ -79,14 +90,36 @@ export default function Pricing() {
             desc={"+ $1 per 1,000 Images"}
             action={<button>Contact Sales</button>}
           />
-        </section>
-        <hr />
-        <section className="faq section">
-          <h2>FAQ</h2>
-          {[1, 2, 3].map((_, i) => (
-            <FaqItem key={i} />
-          ))}
-        </section>
+        </motion.section>
+        <motion.hr
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+        />
+        <motion.section
+          className="faq section"
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.6 }}
+        >
+          <motion.h2
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.8 }}
+          >
+            FAQ
+          </motion.h2>
+          <motion.div
+            className="list"
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.8 }}
+          >
+            {[1, 2, 3].map((_, i) => (
+              <FaqItem key={i} />
+            ))}
+          </motion.div>
+        </motion.section>
       </Main>
     </>
   );
@@ -138,5 +171,12 @@ const Main = styled.main`
     align-items: stretch;
     gap: 32px;
     width: 670px;
+
+    .list {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 16px;
+    }
   }
 `;
