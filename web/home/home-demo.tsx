@@ -62,7 +62,7 @@ export function HomeDemo() {
             minimap: { enabled: false },
           }}
         />
-        <footer>
+        <footer className="fixed">
           <button>
             <UploadIcon />
           </button>
@@ -71,8 +71,8 @@ export function HomeDemo() {
       <button className="cta">
         <PlayIcon />
       </button>
-      <section className="panel">
-        {src && <img src={src} width="100%" height="100%" />}
+      <section className="panel scroll">
+        <img src={src ? src : demo_src.img} width="100%" />
       </section>
       {/* <HomeDemoDropzone onHtml={setHtml} /> */}
     </HomeDemoContainer>
@@ -92,6 +92,7 @@ const HomeDemoContainer = styled.div`
   flex-direction: row;
 
   .cta {
+    z-index: 9;
     cursor: pointer;
     position: absolute;
     display: flex;
@@ -120,13 +121,24 @@ const HomeDemoContainer = styled.div`
   }
 
   .panel {
+    position: relative;
     flex: 1;
     flex-direction: column;
 
     header,
     footer {
       flex: 1;
-      height: 32px;
+      align-self: stretch;
+      min-height: 32px;
+
+      display: flex;
+      align-items: center;
+      justify-content: start;
+
+      padding: 4px 8px;
+
+      background: rgba(0, 0, 0, 0.01);
+      backdrop-filter: blur(16px);
 
       button {
         cursor: pointer;
@@ -136,11 +148,24 @@ const HomeDemoContainer = styled.div`
         border: none;
         background: none;
         color: white;
+        border-radius: 4px;
 
         &:hover {
           background: rgba(255, 255, 255, 0.1);
         }
       }
     }
+  }
+
+  footer {
+    z-index: 1;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+  .scroll {
+    overflow: scroll;
   }
 `;
