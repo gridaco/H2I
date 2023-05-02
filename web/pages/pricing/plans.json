@@ -1,0 +1,22 @@
+{
+  "personal": {
+    "id": "price_1Mzk8ZAvR3geCh5rdPrSODkU",
+    "link": "https://buy.stripe.com/bIYdR7fxG4MUfyU14e",
+    "price": {
+      "value": 5,
+      "currency": "usd",
+      "symbol": "$",
+      "interval": "month"
+    }
+  },
+  "team": {
+    "id": "price_1Mzk8ZAvR3geCh5r1jTfl3oy",
+    "link": "https://buy.stripe.com/bIY14l3OYgvCdqM14f",
+    "price": {
+      "value": 25,
+      "currency": "usd",
+      "symbol": "$",
+      "interval": "month"
+    }
+  }
+}

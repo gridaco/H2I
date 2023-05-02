@@ -6,6 +6,8 @@ import { FaqItem } from "components/faq";
 import { PricingCard } from "components/pricing";
 import { motion } from "framer-motion";
 import faqs from "k/faq.json";
+import plans from "./plans.json";
+import contacts from "k/contacts.json";
 
 const price_size = {
   normal: { width: 220 } as const,
@@ -33,7 +35,7 @@ export default function Pricing() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <PricingCard
+          {/* <PricingCard
             style={price_size.normal}
             plan="Sandbox"
             price={{
@@ -44,14 +46,14 @@ export default function Pricing() {
               unit: "Images",
             }}
             desc={"Free forever."}
-            action={<button>Start Free</button>}
-          />
+            action={<button onClick={() => {}}>Start Free</button>}
+          /> */}
           <PricingCard
             style={price_size.normal}
             plan="Personal"
             price={{
-              value: 5,
-              currency: "$",
+              value: plans.personal.price.value,
+              currency: plans.personal.price.symbol,
               unit: "/Mo",
             }}
             unit={{
@@ -59,14 +61,22 @@ export default function Pricing() {
               unit: "Images",
             }}
             desc={"$0.005 per Image"}
-            action={<button>Get Started</button>}
+            action={
+              <button
+                onClick={() => {
+                  open(plans.personal.link);
+                }}
+              >
+                Get Started
+              </button>
+            }
           />
           <PricingCard
             style={price_size.highlighted}
             plan="Team"
             price={{
-              value: 25,
-              currency: "$",
+              value: plans.team.price.value,
+              currency: plans.team.price.symbol,
               unit: "/Mo",
             }}
             unit={{
@@ -74,7 +84,15 @@ export default function Pricing() {
               unit: "Images",
             }}
             desc={"$0.0025 per Images"}
-            action={<button>Get Started</button>}
+            action={
+              <button
+                onClick={() => {
+                  open(plans.team.link);
+                }}
+              >
+                Get Started
+              </button>
+            }
           />
           <PricingCard
             style={price_size.normal}
@@ -89,7 +107,15 @@ export default function Pricing() {
               unit: "Images",
             }}
             desc={"+ $1 per 1,000 Images"}
-            action={<button>Contact Sales</button>}
+            action={
+              <button
+                onClick={() => {
+                  open(contacts.demo);
+                }}
+              >
+                Contact Sales
+              </button>
+            }
           />
         </motion.section>
         <motion.hr

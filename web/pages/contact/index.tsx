@@ -2,6 +2,7 @@ import React from "react";
 import Head from "next/head";
 import { Header, HeaderSpace } from "components/header";
 import Link from "next/link";
+import contacts from "k/contacts.json";
 
 export default function ContactPage() {
   return (
@@ -21,10 +22,10 @@ export default function ContactPage() {
             gap: 24,
           }}
         >
-          <Link href="hello@grida.co">
-            <h2>hello@grida.co</h2>
+          <Link href={contacts.email}>
+            <h2>{contacts.email}</h2>
           </Link>
-          <Link href="https://cal.com/universe-from-grida/15min">
+          <Link href={contacts.demo}>
             <h2>book a meeting</h2>
           </Link>
         </section>
