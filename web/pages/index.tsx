@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import styles from "styles/Home.module.css";
 import Link from "next/link";
 import { HomeDemo } from "home";
+import { motion } from "framer-motion";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,7 +18,12 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <div className={styles.description}>
+        <motion.div
+          className={styles.description}
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.5 }}
+        >
           <p>
             <Image
               src="/logo.svg"
@@ -46,13 +52,25 @@ export default function Home() {
               />
             </a>
           </div>
-        </div>
+        </motion.div>
 
-        <div className={styles.center}>
+        <motion.div
+          className={styles.center}
+          initial={{ opacity: 0.5, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{
+            duration: 0.5,
+          }}
+        >
           <HomeDemo />
-        </div>
+        </motion.div>
 
-        <div className={styles.grid}>
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.5 }}
+          className={styles.grid}
+        >
           <Link
             href="/docs"
             className={styles.card}
@@ -105,7 +123,7 @@ export default function Home() {
               Learn more about HTML2.IO pricing plans. Get started for free.
             </p>
           </Link>
-        </div>
+        </motion.div>
       </main>
     </>
   );

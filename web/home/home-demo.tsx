@@ -97,13 +97,7 @@ export function HomeDemo() {
   }
 
   return (
-    <HomeDemoContainer
-      initial={{ opacity: 0.5, y: 24 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{
-        duration: 0.5,
-      }}
-    >
+    <HomeDemoContainer>
       <section className="panel" style={{ background: "#1E1E1E" }}>
         <header></header>
         <motion.div
@@ -207,7 +201,7 @@ function SmoothImage({
   );
 }
 
-const HomeDemoContainer = styled(motion.div)`
+const HomeDemoContainer = styled.div`
   border-radius: 8px;
   overflow: hidden;
   border: 2px solid rgba(255, 255, 255, 0.1);
