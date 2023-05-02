@@ -10,7 +10,7 @@ export default function Pricing() {
       </Head>
       <Main>
         <h1>Pricing</h1>
-        <div className="pricing-table">
+        <section className="pricing-table section">
           <PricingCard
             style={{ width: 220 }}
             plan="Sandbox"
@@ -25,7 +25,7 @@ export default function Pricing() {
             action={<button>Start Free</button>}
           />
           <PricingCard
-            style={{ width: 220 }}
+            style={{ width: 234, height: 340 }}
             plan="Personal"
             price={{
               value: 5,
@@ -69,7 +69,14 @@ export default function Pricing() {
             desc={"+ $1 per 1,000 Images"}
             action={<button>Contact Sales</button>}
           />
-        </div>
+        </section>
+        <hr />
+        <section className="faq section">
+          <h2>FAQ</h2>
+          {[1, 2, 3].map((_, i) => (
+            <FaqItem key={i} />
+          ))}
+        </section>
       </Main>
     </>
   );
@@ -80,12 +87,19 @@ const Main = styled.main`
   flex-direction: column;
   align-items: center;
 
+  color: white;
+  font-family: "Inter", sans-serif;
+
   h1 {
-    margin-top: 32px;
+    margin-top: 80px;
     font-size: 48px;
     font-weight: 700;
-    color: white;
-    font-family: "Inter", sans-serif;
+    text-align: center;
+  }
+
+  h2 {
+    margin-top: 32px;
+    text-align: center;
   }
 
   .pricing-table {
@@ -95,6 +109,25 @@ const Main = styled.main`
     align-items: center;
     gap: 16px;
     margin-top: 32px;
+  }
+
+  hr {
+    width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 32px;
+    margin-bottom: 32px;
+  }
+
+  section.section {
+    padding: 32px;
+  }
+
+  section.faq {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 32px;
+    width: 670px;
   }
 `;
 
@@ -140,7 +173,7 @@ export function PricingCard({
       <section>
         <span className="desc">{desc}</span>
       </section>
-      <div style={{ height: 60 }} />
+      <div style={{ minHeight: 60, flex: 1 }} />
       {action}
       <span className="dot" />
     </PricingCardWrapper>
@@ -259,5 +292,43 @@ const PricingCardWrapper = styled.div`
     position: absolute;
     top: 20px;
     right: 20px;
+  }
+`;
+
+function FaqItem() {
+  return (
+    <FaqItemWrapper>
+      <summary className="question">
+        What is the difference between a user and a member?
+      </summary>
+      <details className="answer">
+        A user is a person who can log in to your workspace. A member is a
+        person who can access a specific project. A user can be a member, but a
+        member doesn’t have to be a user.
+      </details>
+    </FaqItemWrapper>
+  );
+}
+
+const FaqItemWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border: solid 2px rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  position: relative;
+
+  color: white;
+
+  .question {
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .answer {
+    font-size: 13px;
+    font-weight: 500;
+    text-align: left;
+    opacity: 0.5;
   }
 `;
