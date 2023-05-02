@@ -1,7 +1,7 @@
 import puppeteer, { PuppeteerLifeCycleEvent } from "puppeteer-core";
 import chromium from "@sparticuz/chromium";
 import assert from "assert";
-import { DEFAULT_VIEWPORT } from "k";
+import { DEFAULT_VIEWPORT } from "../k";
 
 async function getBrowser() {
   return puppeteer.launch({
