@@ -1,18 +1,12 @@
 import React from "react";
 import styled from "@emotion/styled";
 
-export function FaqItem() {
+export function FaqItem({ q, a }: { q: string; a: string }) {
   return (
     <FaqItemWrapper>
       <details>
-        <summary className="question">
-          What is the difference between a user and a member?
-        </summary>
-        <p className="answer">
-          A user is a person who can log in to your workspace. A member is a
-          person who can access a specific project. A user can be a member, but
-          a member doesn’t have to be a user.
-        </p>
+        <summary className="question">{q}</summary>
+        <p className="answer">{a}</p>
       </details>
     </FaqItemWrapper>
   );

@@ -5,6 +5,7 @@ import Head from "next/head";
 import { FaqItem } from "components/faq";
 import { PricingCard } from "components/pricing";
 import { motion } from "framer-motion";
+import faqs from "k/faq.json";
 
 const price_size = {
   normal: { width: 220 } as const,
@@ -115,8 +116,8 @@ export default function Pricing() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.8 }}
           >
-            {[1, 2, 3].map((_, i) => (
-              <FaqItem key={i} />
+            {faqs.map((_, i) => (
+              <FaqItem key={i} {..._} />
             ))}
           </motion.div>
         </motion.section>

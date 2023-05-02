@@ -1,0 +1,18 @@
+[
+  {
+    "q": "What formats other than png are supported?",
+    "a": "H2I supports png, jpg, jpeg, gif, bmp, tiff, tif, and webp."
+  },
+  {
+    "q": "Do you offer custom plans for enterprise?",
+    "a": "Yes, we can create you a custom plan, dedicated hosting for heavy usage, or even a self-hosted solution. Contact us for more information."
+  },
+  {
+    "q": "Is self hosting H2I a cost effective solution?",
+    "a": "Depends. H2I requires minimal cloud infra to run and is very cost effective for small to medium scale projects. However, if you are looking to host a large scale project, we recommend you to use our dedicated hosting or contact us for a custom plan."
+  },
+  {
+    "q": "I'm running a OpenSource / Non-profit project. Can I get a discount for this?",
+    "a": "Yes, we are more than happy to support OpenSource and Non-profit projects. Contact us for more information."
+  }
+]
