@@ -64,6 +64,7 @@ const config = {
         logo: {
           alt: "html2.io logo",
           src: "img/logo.svg",
+          srcDark: "img/logo-on-dark.svg",
         },
         items: [
           {
