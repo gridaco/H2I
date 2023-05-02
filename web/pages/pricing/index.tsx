@@ -130,7 +130,6 @@ const Main = styled.main`
   flex-direction: column;
   align-items: center;
 
-  color: white;
   font-family: "Inter", sans-serif;
 
   h1 {

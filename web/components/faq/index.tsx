@@ -20,11 +20,9 @@ const FaqItemWrapper = styled.div`
   display: flex;
   flex-direction: column;
   padding: 20px;
-  border: solid 2px rgba(255, 255, 255, 0.1);
+  border: solid 2px rgba(var(--card-border-rgb), 0.1);
   border-radius: 8px;
   position: relative;
-
-  color: white;
 
   .question {
     font-size: 14px;

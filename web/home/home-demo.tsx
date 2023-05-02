@@ -263,7 +263,7 @@ function SmoothImage({
 const HomeDemoContainer = styled.div`
   border-radius: 8px;
   overflow: hidden;
-  border: 2px solid rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(var(--foreground-rgb), 0.1);
 
   width: 800px;
   height: 400px;
@@ -273,15 +273,16 @@ const HomeDemoContainer = styled.div`
   flex-direction: row;
 
   .cta {
-    --shadow-color-1: rgba(255, 255, 255, 0.1);
-    --shadow-color-2: rgba(255, 255, 255, 0.2);
+    --shadow-color-1: rgba(var(--foreground-rgb), 0.1);
+    --shadow-color-2: rgba(var(--foreground-rgb), 0.2);
 
     &[data-inverted="true"] {
       background: white;
       color: black;
-      --shadow-color-1: rgba(0, 0, 0, 0.2);
-      --shadow-color-2: rgba(0, 0, 0, 0.4);
+      --shadow-color-1: rgba(var(--foreground-inverted-rgb), 0.2);
+      --shadow-color-2: rgba(var(--foreground-inverted-rgb), 0.4);
     }
+    color: white;
 
     z-index: 9;
     cursor: pointer;

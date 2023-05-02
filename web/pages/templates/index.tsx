@@ -13,7 +13,7 @@ export default function Templates() {
       </Head>
       <Header />
       <Main>
-        <HeaderSpace />
+        <HeaderSpace extra={60} />
         <h1>Templates</h1>
         <section className="search">
           <input placeholder="Search" />
@@ -38,21 +38,24 @@ export default function Templates() {
 }
 
 const Main = styled.main`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px;
+
+  max-width: 1040px;
+  margin: auto;
+
   h1 {
     font-size: 32px;
     font-weight: 700;
     margin-bottom: 24px;
   }
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 24px;
-
   .grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-gap: 24px;
+    grid-template-columns: repeat(4, 220px);
+    grid-gap: 21px;
   }
 
   .search {
@@ -75,6 +78,10 @@ const Main = styled.main`
       gap: 8px;
     }
   }
+
+  section {
+    padding: 24px;
+  }
 `;
 
 function Tag() {
@@ -91,12 +98,14 @@ const TagWrapper = styled.button`
 function TemplateCard({ id }: { id: string }) {
   return (
     <Link
+      shallow
       href={{
         pathname: "/templates/[id]",
         query: { id },
       }}
     >
       <TemplateCardWrapper>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="https://i.pinimg.com/736x/56/d7/5f/56d75f99f82620f64895c8f81592fd89.jpg"
           alt="Template Image"

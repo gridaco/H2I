@@ -55,17 +55,16 @@ const PricingCardWrapper = styled(motion.div)`
   display: flex;
   flex-direction: column;
   padding: 20px;
-  border: solid 2px rgba(255, 255, 255, 0.1);
+  border: solid 2px rgba(var(--card-border-rgb), 0.1);
   border-radius: 8px;
   position: relative;
 
-  color: white;
   font-family: Inter, sans-serif;
   text-align: left;
 
   &:hover {
-    border: solid 2px rgba(255, 255, 255, 0.8);
-    box-shadow: 0px 0px 24px 2px rgba(255, 255, 255, 0.1);
+    border: solid 2px rgba(var(--card-border-rgb), 0.2);
+    box-shadow: 0px 0px 24px 2px rgba(var(--card-box-shadow-rgb), 0.1);
   }
 
   section {
@@ -128,21 +127,16 @@ const PricingCardWrapper = styled(motion.div)`
   }
 
   button {
-    height: 31px;
-    box-shadow: 0px 4px 24px 2px rgba(255, 255, 255, 0.2);
-    background: linear-gradient(
-      90deg,
-      rgb(237, 237, 237),
-      rgba(255, 255, 255, 0.77)
-    );
+    box-shadow: 0px 4px 24px 2px rgba(var(--card-box-shadow-rgb), 0.2);
+    background: var(--card-button-background);
     border: solid 1px rgba(120, 120, 120, 0.8);
     border-radius: 4px;
     padding: 8px 10px;
-    color: black;
     font-size: 12px;
     font-weight: 600;
     outline: none;
     cursor: pointer;
+    color: rgb(var(--foreground-inverted-rgb));
 
     :hover {
       opacity: 0.8;
@@ -163,7 +157,7 @@ const PricingCardWrapper = styled(motion.div)`
   .dot {
     width: 8px;
     height: 8px;
-    background-color: white;
+    background-color: rgb(var(--foreground-rgb));
     border-radius: 50%;
     position: absolute;
     top: 20px;

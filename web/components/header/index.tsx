@@ -20,8 +20,8 @@ export function Header() {
   );
 }
 
-export function HeaderSpace() {
-  return <div style={{ height: 64 }} />;
+export function HeaderSpace({ extra = 0 }: { extra?: number }) {
+  return <div style={{ height: 64 + extra }} />;
 }
 
 const HeaderWrapper = styled.header`
