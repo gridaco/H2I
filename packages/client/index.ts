@@ -4,6 +4,21 @@ import * as k from "./k";
 
 export { k };
 
+interface ImageResponse {
+  id: string;
+  title: string;
+  userAgent: string;
+  url: string;
+  chrome: {
+    version: string;
+  };
+}
+
+interface ImageRequestBase {
+  width?: number;
+  height?: number;
+}
+
 export interface ClientOptions {
   /** API Key */
   readonly apiKey?: string;
@@ -19,8 +34,13 @@ export interface ClientInterface {
    */
   readonly fromHtml: (
     html: string,
-    params?: {},
-  ) => AxiosPromise<{ url: string }>;
+    params?: ImageRequestBase,
+  ) => AxiosPromise<ImageResponse>;
+
+  readonly fromUrl: (
+    html: string,
+    params?: ImageRequestBase,
+  ) => AxiosPromise<ImageResponse>;
 }
 
 export const Client = (opts: ClientOptions): ClientInterface => {
@@ -36,17 +56,16 @@ export const Client = (opts: ClientOptions): ClientInterface => {
   return {
     client,
 
-    fromHtml: (html, params = {}) =>
-      client.post(
-        `/image`,
-        {
-          html,
-        },
-        {
-          params: {
-            ...params,
-          },
-        },
-      ),
+    fromHtml: (html, options = {}) =>
+      client.post(`/image`, {
+        html,
+        ...options,
+      }),
+
+    fromUrl: (url, options = {}) =>
+      client.post(`/image`, {
+        url,
+        ...options,
+      }),
   };
 };
