@@ -17,17 +17,29 @@ export interface ChromeImageExport {
   url?: string;
   src?: string | { [key: string]: string };
   waitUntil?: PuppeteerLifeCycleEvent | PuppeteerLifeCycleEvent[];
+  fullPage?: boolean;
+  viewport?: {
+    width: number;
+    height: number;
+  };
 }
 
 export async function image({
   mode,
   url,
   src,
+  fullPage = true,
+  viewport,
   waitUntil = "networkidle0",
 }: ChromeImageExport) {
   const browser = await getBrowser();
   const page = await browser.newPage();
   const warnings = [];
+
+  // set viewport
+  if (viewport) {
+    await page.setViewport(viewport);
+  }
 
   switch (mode) {
     case "src":
@@ -80,7 +92,7 @@ export async function image({
     browser.version(),
     browser.userAgent(),
     page.title(),
-    page.screenshot({ fullPage: true, encoding: "base64" }),
+    page.screenshot({ fullPage, encoding: "base64" }),
   ];
   const [
     //

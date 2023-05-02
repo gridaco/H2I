@@ -31,7 +31,12 @@ app.use(bodyParser.json());
 app.use(logErrors);
 
 app.get("/image", async (req, res) => {
-  const { html, url } = req.query;
+  const { html, url, width: q_width, height: q_height } = req.query;
+
+  // parse
+  const width = q_width && parseInt(q_width as string);
+  const height = q_height && parseInt(q_height as string);
+
   const id = nanoid();
 
   // validations
@@ -48,6 +53,13 @@ app.get("/image", async (req, res) => {
     if (html) {
       assert(typeof html === "string", "html must be a string");
     }
+    if (width || height) {
+      assert(typeof width === "number", "width must be a number");
+      assert(typeof height === "number", "height must be a number");
+
+      // both must be set
+      assert(width && height, "both width and height must be set");
+    }
   } catch (e) {
     console.error(e);
     res.status(400).json({ error: e.message });
@@ -61,6 +73,8 @@ app.get("/image", async (req, res) => {
         id,
         url: url as string,
         src: html as string,
+        viewport: width && height ? { width, height } : undefined,
+        fullPage: width && height ? false : true,
       }),
     );
   } catch (e) {
@@ -70,7 +84,7 @@ app.get("/image", async (req, res) => {
 });
 
 app.post("/image", async (req, res) => {
-  const { html, url, src } = req.body;
+  const { html, url, src, width, height } = req.body;
   const id = nanoid();
 
   // validations
@@ -91,6 +105,12 @@ app.post("/image", async (req, res) => {
         assert(src["index.html"], "src must contain index.html");
       }
     }
+    if (width || height) {
+      assert(typeof width === "number", "width must be a number");
+      assert(typeof height === "number", "height must be a number");
+      // both must be set
+      assert(width && height, "both width and height must be set");
+    }
   } catch (e) {
     console.error(e);
     res.status(400).json({ error: e.message });
@@ -104,6 +124,8 @@ app.post("/image", async (req, res) => {
         id,
         url,
         src: src ?? html,
+        viewport: width && height ? { width, height } : undefined,
+        fullPage: width && height ? false : true,
       }),
     );
   } catch (e) {
