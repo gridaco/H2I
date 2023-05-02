@@ -1,10 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import { HomeDemoDropzone } from "./home-dropzone";
 import * as H2I from "h2i";
 import styled from "@emotion/styled";
 import { Editor } from "@monaco-editor/react";
 import { PlayIcon, UploadIcon } from "@radix-ui/react-icons";
 import { demo_src } from "./k";
+import { motion } from "framer-motion";
 
 const img = H2I.Client({
   apiRoot: "https://api.html2.io/",
@@ -29,57 +30,184 @@ function CSB() {
   );
 }
 
+type DemoMode = "html" | "js" | "url" | "csb";
+
+const mode_acceptable_files = {
+  html: [".html", ".htm"],
+  js: [".js"],
+} as const;
+
 export function HomeDemo() {
-  const [html, setHtml] = React.useState<string | null>(null);
-  const [src, setSrc] = React.useState<string | null>(null);
+  const [idle, setIdle] = React.useState(true);
+  const [mode, setMode] = React.useState<DemoMode>(demo_src.language);
+  const [code, setCode] = React.useState<string | null>(demo_src.value);
+  const [src, setSrc] = React.useState<string | null>();
+  const [language, setLanguage] = React.useState<"html" | "js" | "txt">(
+    demo_src.language,
+  );
+  const fileInputRef = React.useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    if (!html) {
+    // first load
+    setTimeout(() => {
+      setIdle(false);
+      setSrc(demo_src.img);
+    }, 500);
+  }, []);
+
+  const triggerFileSelect = (event) => {
+    fileInputRef?.current?.click();
+  };
+
+  const onFileChange = (event) => {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      setCode(event.target.result as string);
+    };
+    reader.readAsText(file);
+  };
+
+  const onCTA = useCallback(() => {
+    switch (mode) {
+      case "html": {
+        img.fromHtml(code).then(({ data }) => {
+          setSrc(data.url);
+        });
+        break;
+      }
+      default: {
+        throw new Error("Not implemented");
+      }
+    }
+  }, [code, mode]);
+
+  useEffect(() => {
+    if (!code) {
       return;
     }
+  }, [code, mode]);
 
-    img.fromHtml(html).then(({ data }) => {
-      setSrc(data.url);
-    });
-  }, [html]);
-
-  // return (
-  //   <HomeDemoContainer>
-  //     <CSB />
-  //   </HomeDemoContainer>
-  // );
+  if (mode === "csb") {
+    return (
+      <HomeDemoContainer>
+        <CSB />
+      </HomeDemoContainer>
+    );
+  }
 
   return (
-    <HomeDemoContainer>
+    <HomeDemoContainer
+      initial={{ opacity: 0.5, y: 24 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{
+        duration: 0.5,
+      }}
+    >
       <section className="panel" style={{ background: "#1E1E1E" }}>
         <header></header>
-        <Editor
-          theme="vs-dark"
-          loading={<></>}
-          value={demo_src.value}
-          language={demo_src.language}
-          options={{
-            minimap: { enabled: false },
-          }}
-        />
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+          style={{ height: "100%" }}
+        >
+          <Editor
+            theme="vs-dark"
+            loading={<></>}
+            value={code}
+            language={language}
+            options={{
+              // minimal
+              minimap: { enabled: false },
+              // lineNumbers: "off",
+              scrollBeyondLastLine: false,
+              scrollbar: { vertical: "hidden" },
+              overviewRulerBorder: false,
+              overviewRulerLanes: 0,
+              renderLineHighlight: "none",
+              renderIndentGuides: false,
+              renderLineHighlightOnlyWhenFocus: true,
+              hideCursorInOverviewRuler: true,
+              renderValidationDecorations: "on",
+              renderWhitespace: "none",
+              renderControlCharacters: false,
+              renderFinalNewline: false,
+            }}
+          />
+        </motion.div>
         <footer className="fixed">
-          <button>
+          <button onClick={triggerFileSelect}>
             <UploadIcon />
+            <input
+              ref={fileInputRef}
+              onChange={onFileChange}
+              type="file"
+              accept={mode_acceptable_files[mode].join(",")}
+              style={{ display: "none" }}
+            />
           </button>
+          <div style={{ flex: 1 }} />
+          <code>{language}</code>
         </footer>
       </section>
-      <button className="cta">
+      <button onClick={onCTA} className="cta">
         <PlayIcon />
       </button>
       <section className="panel scroll">
-        <img src={src ? src : demo_src.img} width="100%" />
+        <motion.div
+          animate={{ opacity: 0 }}
+          transition={{ duration: 0.5 }}
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: "rgba(0,0,0,0.5)",
+            backdropFilter: "blur(4px)",
+          }}
+        />
+        {src && <SmoothImage src={src} alt="H2I result" width="100%" />}
       </section>
       {/* <HomeDemoDropzone onHtml={setHtml} /> */}
     </HomeDemoContainer>
   );
 }
 
-const HomeDemoContainer = styled.div`
+function SmoothImage({
+  src,
+  alt,
+  width,
+  height,
+  duration = 1,
+}: {
+  src: string;
+  alt?: string;
+  width?: string;
+  height?: string;
+  duration?: number;
+}) {
+  const [loaded, setLoaded] = React.useState(false);
+  return (
+    <motion.img
+      key={src}
+      src={src}
+      alt={alt}
+      width={width}
+      height={height}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: loaded ? 1 : 0 }}
+      transition={{ duration }}
+      onLoad={() => {
+        console.log("loaded");
+        setLoaded(true);
+      }}
+    />
+  );
+}
+
+const HomeDemoContainer = styled(motion.div)`
   border-radius: 8px;
   overflow: hidden;
   border: 2px solid rgba(255, 255, 255, 0.1);
@@ -150,9 +278,25 @@ const HomeDemoContainer = styled.div`
         color: white;
         border-radius: 4px;
 
+        outline: 0px solid transparent;
+
         &:hover {
           background: rgba(255, 255, 255, 0.1);
         }
+
+        &:focus,
+        &:active {
+          outline: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        transition: all 0.1s ease-in-out;
+      }
+
+      code {
+        padding: 2px;
+        user-select: none;
+        opacity: 0.5;
+        font-size: 12px;
       }
     }
   }
