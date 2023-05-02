@@ -8,7 +8,7 @@
   "scripts": {
     "dev": "sls offline start --stage development --noTimeout",
     "deploy:staging": "sls deploy --stage staging",
-    "deploy:prod": "sls deploy --stage production",
+    "deploy:prod": "sls deploy --stage production --param='domain=true'",
     "deploy:dev": "sls deploy --stage development",
     "test": "jest"
   },

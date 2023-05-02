@@ -36,6 +36,7 @@ provider:
     # https://stackoverflow.com/questions/61003311/serverless-i-image-upload-to-s3-broken-after-deploy-local-worked-only/61003498#61003498
     binaryMediaTypes:
       - "*/*"
+    disableDefaultEndpoint: ${self:custom.customDomain.enabled, false}
   iamRoleStatements:
     - Effect: Allow
       Action:
