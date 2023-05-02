@@ -1,11 +1,12 @@
 import puppeteer, { PuppeteerLifeCycleEvent } from "puppeteer-core";
 import chromium from "@sparticuz/chromium";
 import assert from "assert";
+import { DEFAULT_VIEWPORT } from "k";
 
 async function getBrowser() {
   return puppeteer.launch({
     args: chromium.args,
-    defaultViewport: chromium.defaultViewport,
+    defaultViewport: DEFAULT_VIEWPORT, // chromium.defaultViewport,
     executablePath: await chromium.executablePath(),
     headless: chromium.headless,
     ignoreHTTPSErrors: true,

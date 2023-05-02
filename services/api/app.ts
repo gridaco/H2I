@@ -5,6 +5,7 @@ import { ChromeImageExport, image } from "./chrome";
 import { upload } from "./s3";
 import { nanoid } from "nanoid";
 import assert from "assert";
+import * as k from "./k";
 
 function logErrors(err, req, res, next) {
   console.error(err.stack);
@@ -73,8 +74,7 @@ app.get("/image", async (req, res) => {
         id,
         url: url as string,
         src: html as string,
-        viewport: width && height ? { width, height } : undefined,
-        fullPage: width && height ? false : true,
+        viewport: width && height ? { width, height } : k.DEFAULT_VIEWPORT,
       }),
     );
   } catch (e) {
@@ -124,8 +124,7 @@ app.post("/image", async (req, res) => {
         id,
         url,
         src: src ?? html,
-        viewport: width && height ? { width, height } : undefined,
-        fullPage: width && height ? false : true,
+        viewport: width && height ? { width, height } : k.DEFAULT_VIEWPORT,
       }),
     );
   } catch (e) {
