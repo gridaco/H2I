@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { Header, HeaderSpace } from "components/header";
 import Head from "next/head";
 import Link from "next/link";
 import React from "react";
@@ -10,7 +11,9 @@ export default function Templates() {
         <title>Templates - H2I</title>
         <meta name="description" content="H2I Templates Library" />
       </Head>
+      <Header />
       <Main>
+        <HeaderSpace />
         <h1>Templates</h1>
         <section className="search">
           <input placeholder="Search" />

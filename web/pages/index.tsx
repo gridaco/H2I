@@ -28,7 +28,7 @@ export default function Home() {
             <Image
               src="/logo.svg"
               alt="Logo"
-              className={styles.logo}
+              className="logo"
               width={40}
               height={32}
               priority

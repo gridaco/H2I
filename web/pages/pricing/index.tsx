@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { Header, HeaderSpace } from "components/header";
 import Head from "next/head";
 import React from "react";
 
@@ -8,7 +9,9 @@ export default function Pricing() {
       <Head>
         <title>Pricing - H2I</title>
       </Head>
+      <Header />
       <Main>
+        <HeaderSpace />
         <h1>Pricing</h1>
         <section className="pricing-table section">
           <PricingCard

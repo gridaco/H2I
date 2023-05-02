@@ -71,6 +71,10 @@
     --card-rgb: 100, 100, 100;
     --card-border-rgb: 200, 200, 200;
   }
+
+  .logo {
+    filter: invert(1);
+  }
 }
 
 * {
