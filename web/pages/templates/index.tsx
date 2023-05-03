@@ -14,7 +14,10 @@ export default function Templates() {
       <Header />
       <Main>
         <HeaderSpace extra={60} />
-        <h1>Templates</h1>
+        <header className="header">
+          <h1>H2I Templates</h1>
+          <p>From Social cards to Short forms, we have it here for you</p>
+        </header>
         <section className="search">
           <input placeholder="Search" />
           <div className="tags">
@@ -46,20 +49,34 @@ const Main = styled.main`
   max-width: 1040px;
   margin: auto;
 
-  h1 {
-    font-size: 32px;
-    font-weight: 700;
-    margin-bottom: 24px;
+  header.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    max-width: 330px;
+    text-align: center;
+
+    h1 {
+      font-size: 40px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    p {
+      font-size: 18px;
+      opacity: 0.5;
+    }
   }
 
   .grid {
     display: grid;
-    grid-template-columns: repeat(4, 220px);
+    grid-template-columns: repeat(3, 220px);
     grid-gap: 21px;
   }
 
   .search {
-    width: 100%;
+    width: 560px;
     display: flex;
     flex-direction: column;
 
@@ -110,10 +127,7 @@ function TemplateCard({ id }: { id: string }) {
           src="https://i.pinimg.com/736x/56/d7/5f/56d75f99f82620f64895c8f81592fd89.jpg"
           alt="Template Image"
         />
-        <div>Template Image</div>
         <div>Template Name</div>
-        <div>Template Description</div>
-        <div>Template Tags</div>
       </TemplateCardWrapper>
     </Link>
   );
